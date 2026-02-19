@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{96965a4f-08c7-46f3-8324-766bad3f1a21}</ProjectGuid>
+    <RootNamespace>nageru</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>C:\gslib_2021\inc;C:\gslib_effect\inc;C:\Git\Team2026\nageru\Src;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\gslib_2021\lib;C:\gslib_effect\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>C:\gslib_2021\inc;C:\gslib_effect\inc;C:\Git\Team2026\nageru\Src;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\gslib_2021\lib;C:\gslib_effect\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>C:\gslib_2021\inc;C:\gslib_effect\inc;C:\Git\Team2026\nageru\Src;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\gslib_2021\lib;C:\gslib_effect\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>C:\gslib_2021\inc;C:\gslib_effect\inc;C:\Git\Team2026\nageru\Src;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\gslib_2021\lib;C:\gslib_effect\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Src\Actor\Actor.cpp" />
+    <ClCompile Include="Src\Actor\ActorManager.cpp" />
+    <ClCompile Include="Src\Actor\AttackCollider\AttackCollider.cpp" />
+    <ClCompile Include="Src\Actor\Enemy\EnemyBasic\EnemyBasic.cpp" />
+    <ClCompile Include="Src\Actor\Player\Player.cpp" />
+    <ClCompile Include="Src\Field\Field.cpp" />
+    <ClCompile Include="Src\Field\FieldActor\FieldActor.cpp" />
+    <ClCompile Include="Src\Field\FieldActor\FieldActorManager.cpp" />
+    <ClCompile Include="Src\FileReader\CSVReader.cpp" />
+    <ClCompile Include="Src\FileReader\FileHandler.cpp" />
+    <ClCompile Include="Src\main.cpp" />
+    <ClCompile Include="Src\Math\Collider\BoundingSphere.cpp" />
+    <ClCompile Include="Src\Render\AnimatedMesh\AnimatedMesh.cpp" />
+    <ClCompile Include="Src\Render\Camera\CameraTPS\CameraTPS.cpp" />
+    <ClCompile Include="Src\Render\Camera\FreeCamera\FreeCamera.cpp" />
+    <ClCompile Include="Src\Render\Light\Light.cpp" />
+    <ClCompile Include="Src\Scene\GamePlayScene\GamePlayScene.cpp" />
+    <ClCompile Include="Src\Scene\SceneManager.cpp" />
+    <ClCompile Include="Src\Tween\Tween.cpp" />
+    <ClCompile Include="Src\Tween\TweenUnit.cpp" />
+    <ClCompile Include="Src\Tween\ValueUnit.cpp" />
+    <ClCompile Include="Src\Tween\Vector2Unit.cpp" />
+    <ClCompile Include="Src\Tween\Vector3Unit.cpp" />
+    <ClCompile Include="Src\World\World.cpp" />
+    <ClCompile Include="Src\XBoxPad\StickRepeater.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Src\Actor\Actor.h" />
+    <ClInclude Include="Src\Actor\ActorManager.h" />
+    <ClInclude Include="Src\Actor\AttackCollider\AttackCollider.h" />
+    <ClInclude Include="Src\Actor\Enemy\EnemyBasic\EnemyBasic.h" />
+    <ClInclude Include="Src\Actor\Player\Player.h" />
+    <ClInclude Include="Src\Assets.h" />
+    <ClInclude Include="Src\Field\Field.h" />
+    <ClInclude Include="Src\Field\FieldActor\FieldActor.h" />
+    <ClInclude Include="Src\Field\FieldActor\FieldActorManager.h" />
+    <ClInclude Include="Src\FileReader\CSVReader.h" />
+    <ClInclude Include="Src\FileReader\FileHandler.h" />
+    <ClInclude Include="Src\Math\Collider\BoundingSphere.h" />
+    <ClInclude Include="Src\Math\Line.h" />
+    <ClInclude Include="Src\Math\Ray.h" />
+    <ClInclude Include="Src\Render\AnimatedMesh\AnimatedMesh.h" />
+    <ClInclude Include="Src\Render\Camera\CameraTPS\CameraTPS.h" />
+    <ClInclude Include="Src\Render\Camera\FreeCamera\FreeCamera.h" />
+    <ClInclude Include="Src\Render\Light\Light.h" />
+    <ClInclude Include="Src\Scene\GamePlayScene\GamePlayScene.h" />
+    <ClInclude Include="Src\Scene\IScene.h" />
+    <ClInclude Include="Src\Scene\SceneManager.h" />
+    <ClInclude Include="Src\Scene\SceneNull.h" />
+    <ClInclude Include="Src\Tween\Tween.h" />
+    <ClInclude Include="Src\Tween\TweenUnit.h" />
+    <ClInclude Include="Src\Tween\ValueUnit.h" />
+    <ClInclude Include="Src\Tween\Vector2Unit.h" />
+    <ClInclude Include="Src\Tween\Vector3Unit.h" />
+    <ClInclude Include="Src\World\IWorld.h" />
+    <ClInclude Include="Src\World\World.h" />
+    <ClInclude Include="Src\XBoxPad\StickRepeater.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
