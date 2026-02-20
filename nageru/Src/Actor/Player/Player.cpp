@@ -6,34 +6,34 @@
 
 // モーション番号
 enum {
-    MotionIdle = 14,
-    MotionTakeDamage = 11,
-    MotionDizzy = 10,
-    MotionDeath = 9,
-    MotionAttack = 0,
-    MotionUpperAttack = 1,
-    MotionGrabStart = 12,
-    MotionGrabMid = 13,
-    MotionSwingMid = 32,
-    MotionSwingStart = 33,
-    MotionThrow = 34,
-    MootionJumpStart = 24,
-    MotionJumpMid = 22,
-    MotionJumpEnd = 23,
-    MotionWalkBack = 37,
-    MotionWalkForward = 38,
-    MotionWalkLeft = 39,
-    MotionWalkRight = 40,
-    MotionRunBack = 26,
-    MotionRunForward = 27,
-    MotionRunLeft = 28,
-    MotionRunRight = 29,
-    MotionDush = 30,
+    MotionIdle = 14,        // アイドル状態
+    MotionTakeDamage = 11,  // ダメージを受けたとき
+    MotionDizzy = 10,       // 気絶状態
+    MotionDeath = 9,        // 死亡
+    MotionAttack = 0,       // 攻撃
+    MotionUpperAttack = 1,  // アッパー攻撃
+    MotionGrabStart = 12,   // つかみ開始
+    MotionGrabMid = 13,     // つかみ中
+    MotionSwingMid = 32,    // 振り回し開始
+    MotionSwingStart = 33,  // 振り回し中
+    MotionThrow = 34,       // 放り投げる
+    MootionJumpStart = 24,  // ジャンプ開始
+    MotionJumpMid = 22,     // ジャンプ中
+    MotionJumpEnd = 23,     // 着地
+    MotionWalkBack = 37,    // 歩き（後ろ方向）
+    MotionWalkForward = 38, // 歩き（前方向）
+    MotionWalkLeft = 39,    // 歩き（左方向）
+    MotionWalkRight = 40,   // 歩き（右方向）
+    MotionRunBack = 26,     // 走り（後ろ方向）
+    MotionRunForward = 27,  // 走り（前方向）
+    MotionRunLeft = 28,     // 走り（左方向）
+    MotionRunRight = 29,    // 走り（右方向）
+    MotionDush = 30,        // ダッシュ
 
-    MotionEmote1 = 3,
-    MotionEmote2 = 4,
-    MotionEmote3 = 35,
-    MotionEmote4 = 36,
+    MotionEmote1 = 3,       // エモート1
+    MotionEmote2 = 4,       // エモート2
+    MotionEmote3 = 35,      // エモート3
+    MotionEmote4 = 36,      // エモート4
 };
 
 // 移動速度
