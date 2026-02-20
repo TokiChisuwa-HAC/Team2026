@@ -7,8 +7,8 @@
 // モーション番号
 enum {
     MotionIdle = 14,        // アイドル状態
-    MotionTakeDamage = 11,  // ダメージを受けたとき
-    MotionDizzy = 10,       // 気絶状態
+    MotionTakeDamage = 11,  // ダメージを受ける
+    MotionDizzy = 10,       // 気絶
     MotionDeath = 9,        // 死亡
     MotionAttack = 0,       // 攻撃
     MotionUpperAttack = 1,  // アッパー攻撃

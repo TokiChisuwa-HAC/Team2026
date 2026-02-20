@@ -7,14 +7,14 @@
 
 // モーション番号
 enum {
-	MotionIdle = 3,
-	MotionDizzy = 2,
-	MotionWalk = 10,
-	MotionAttack = 0,
-	MotionTurnLeft = 16,
-	MotionTurnRight = 17,
-	MotionJump = 1,
-	MotionTakeDamage = 15,
+	MotionIdle = 3,			// アイドル状態
+	MotionDizzy = 2,		// 気絶
+	MotionWalk = 10,		// 通常移動
+	MotionAttack = 0,		// 攻撃
+	MotionTurnLeft = 16,	// 左に振り向く
+	MotionTurnRight = 17,	// 右に振り向く
+	MotionJump = 1,			// ジャンプ
+	MotionTakeDamage = 15,	// ダメージを受ける
 };
 
 // 自分の高さ
