@@ -7,7 +7,14 @@
 
 // ƒ‚[ƒVƒ‡ƒ“”Ô†
 enum {
-	MotionIdle = 1,
+	MotionIdle = 3,
+	MotionDizzy = 2,
+	MotionWalk = 10,
+	MotionAttack = 0,
+	MotionTurnLeft = 16,
+	MotionTurnRight = 17,
+	MotionJump = 1,
+	MotionTakeDamage = 15,
 };
 
 // ©•ª‚Ì‚‚³
