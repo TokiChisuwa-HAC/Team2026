@@ -2,6 +2,7 @@ C:\Git\Team2026\nageru\Src\Actor\Actor.cpp;C:\Git\Team2026\nageru\nageru\Debug\A
 C:\Git\Team2026\nageru\Src\Actor\ActorManager.cpp;C:\Git\Team2026\nageru\nageru\Debug\ActorManager.obj
 C:\Git\Team2026\nageru\Src\Actor\AttackCollider\AttackCollider.cpp;C:\Git\Team2026\nageru\nageru\Debug\AttackCollider.obj
 C:\Git\Team2026\nageru\Src\Actor\Enemy\EnemyBasic\EnemyBasic.cpp;C:\Git\Team2026\nageru\nageru\Debug\EnemyBasic.obj
+C:\Git\Team2026\nageru\Src\Actor\Enemy\EnemySpike\EnemySpike.cpp;C:\Git\Team2026\nageru\nageru\Debug\EnemySpike.obj
 C:\Git\Team2026\nageru\Src\Actor\Player\Player.cpp;C:\Git\Team2026\nageru\nageru\Debug\Player.obj
 C:\Git\Team2026\nageru\Src\Field\Field.cpp;C:\Git\Team2026\nageru\nageru\Debug\Field.obj
 C:\Git\Team2026\nageru\Src\Field\FieldActor\FieldActor.cpp;C:\Git\Team2026\nageru\nageru\Debug\FieldActor.obj

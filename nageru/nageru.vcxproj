@@ -143,6 +143,7 @@
     <ClCompile Include="Src\Actor\ActorManager.cpp" />
     <ClCompile Include="Src\Actor\AttackCollider\AttackCollider.cpp" />
     <ClCompile Include="Src\Actor\Enemy\EnemyBasic\EnemyBasic.cpp" />
+    <ClCompile Include="Src\Actor\Enemy\EnemySpike\EnemySpike.cpp" />
     <ClCompile Include="Src\Actor\Player\Player.cpp" />
     <ClCompile Include="Src\Field\Field.cpp" />
     <ClCompile Include="Src\Field\FieldActor\FieldActor.cpp" />
@@ -170,6 +171,7 @@
     <ClInclude Include="Src\Actor\ActorManager.h" />
     <ClInclude Include="Src\Actor\AttackCollider\AttackCollider.h" />
     <ClInclude Include="Src\Actor\Enemy\EnemyBasic\EnemyBasic.h" />
+    <ClInclude Include="Src\Actor\Enemy\EnemySpike\EnemySpike.h" />
     <ClInclude Include="Src\Actor\Player\Player.h" />
     <ClInclude Include="Src\Assets.h" />
     <ClInclude Include="Src\Field\Field.h" />

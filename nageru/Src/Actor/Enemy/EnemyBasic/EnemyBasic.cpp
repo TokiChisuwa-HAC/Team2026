@@ -62,7 +62,7 @@ void EnemyBasic::update(float delta_time) {
 // 描画
 void EnemyBasic::draw() const {
 	// メッシュの描画
-	//mesh_.draw();
+	mesh_.draw();
 	// 当たり判定をテスト描画
 	collider().draw();
 }

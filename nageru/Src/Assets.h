@@ -6,6 +6,7 @@ enum {
 	Mesh_Skybox,
 	Mesh_Player,
 	Mesh_EnemyBasic,
+	Mesh_EnemySpike,
 };
 
 // オクトリー
