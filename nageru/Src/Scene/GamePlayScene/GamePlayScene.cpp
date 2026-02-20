@@ -44,6 +44,9 @@ void GamePlayScene::start() {
     // 衝突判定用オクツリーの読み込み
     gsLoadOctree(Octree_Collider, "Assets/Octree/stage_collider.oct");
 
+    // プレイヤーメッシュの読み込み
+    gsLoadSkinMesh(Mesh_Player, "Assets/Player/player.mshb");
+
     // フィールドクラスの追加
     world_.add_field(new Field{ Octree_Stage, Octree_Collider, Mesh_Skybox });
     // カメラクラスの追加

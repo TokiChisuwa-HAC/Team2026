@@ -6,15 +6,42 @@
 
 // モーション番号
 enum {
-	MotionIdle = 1,
+    MotionIdle = 14,
+    MotionTakeDamage = 11,
+    MotionDizzy = 10,
+    MotionDeath = 9,
+    MotionAttack = 0,
+    MotionUpperAttack = 1,
+    MotionGrabStart = 12,
+    MotionGrabMid = 13,
+    MotionSwingMid = 32,
+    MotionSwingStart = 33,
+    MotionThrow = 34,
+    MootionJumpStart = 24,
+    MotionJumpMid = 22,
+    MotionJumpEnd = 23,
+    MotionWalkBack = 37,
+    MotionWalkForward = 38,
+    MotionWalkLeft = 39,
+    MotionWalkRight = 40,
+    MotionRunBack = 26,
+    MotionRunForward = 27,
+    MotionRunLeft = 28,
+    MotionRunRight = 29,
+    MotionDush = 30,
+
+    MotionEmote1 = 3,
+    MotionEmote2 = 4,
+    MotionEmote3 = 35,
+    MotionEmote4 = 36,
 };
 
 // 移動速度
 const float WalkSpeed{ 0.025f };
 // 自分の高さ
-const float PlayerHeight{ 1.0f };
+const float PlayerHeight{ 0.7f };
 // 衝突判定用の半径
-const float PlayerRadius{ 0.5f };
+const float PlayerRadius{ 0.45f };
 // 足元のオフセット
 const float FootOffset{ 0.1f };
 
@@ -55,7 +82,7 @@ void Player::update(float delta_time) {
 // 描画
 void Player::draw() const {
 	// メッシュを描画
-	//mesh_.draw();
+	mesh_.draw();
 	// 当たり判定をテスト描画
 	collider().draw();
 }
