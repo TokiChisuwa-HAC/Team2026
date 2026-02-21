@@ -351,3 +351,9 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+nageru/nageru/Debug/vc143.idb
+nageru/nageru/Debug/nageru.tlog/CL.read.1.tlog
+nageru/nageru/Debug/nageru.tlog/CL.write.1.tlog
+nageru/nageru/Debug/nageru.tlog/link.command.1.tlog
+nageru/nageru/Debug/nageru.tlog/link.read.1.tlog
+nageru/nageru/Debug/nageru.tlog/nageru.lastbuildstate
