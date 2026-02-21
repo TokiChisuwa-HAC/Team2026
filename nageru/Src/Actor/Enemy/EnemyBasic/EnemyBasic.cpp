@@ -37,10 +37,15 @@ EnemyBasic::EnemyBasic(IWorld* world, const GSvector3& position) :
 	transform_.position(position);
 	// メッシュの変換行列を初期化
 	mesh_.transform(transform_.localToWorldMatrix());
+
+	//タイマー初期化
+	state_timer_ = 0.0f;
 }
 
 // 更新
 void EnemyBasic::update(float delta_time) {
+	//状態の更新
+	update_state(delta_time);
 	// 重力で下向きに加速
 	velocity_.y += world_->field()->gravity() * delta_time;
 	// y方向に移動
@@ -59,16 +64,76 @@ void EnemyBasic::update(float delta_time) {
 	gsSetEffectMatrix(effect_handle_, &world);
 }
 
-// 描画
-void EnemyBasic::draw() const {
-	// メッシュの描画
-	mesh_.draw();
-	// 当たり判定をテスト描画
-	collider().draw();
+//状態の更新
+void EnemyBasic::update_state(float delta_time) {
+	switch (state_) {
+	case State::Idle:idle(delta_time); break;
+	case State::Patrol:patrol(delta_time); break;
+	case State::Chase:chase(delta_time); break;
+	case State::Attack:attack(delta_time); break;
+	case State::Down:down(delta_time); break;
+	case State::Hold:hold(delta_time); break;
+	case State::Thrown:thrown(delta_time); break;
+	case State::Damage:damage(delta_time); break;
+	case State::Die:enemy_die(delta_time); break;
+	}
+	state_timer_ += delta_time;
 }
 
-// 衝突リアクション
-void EnemyBasic::react(Actor& other) {
+//状態の変更
+void EnemyBasic::change_state(State state, GSuint motion, bool loop) {
+	if (state_ == state && motion_ == motion) {
+		return;
+	}
+
+	motion_ = motion;
+	motion_loop_ = loop;
+	state_ = state;
+	state_timer_ = 0.0f;
+}
+
+//アイドル状態
+void EnemyBasic::idle(float delta_timer) {
+
+}
+
+//パトロール状態
+void EnemyBasic::patrol(float delta_timer) {
+
+}
+
+//追跡状態
+void EnemyBasic::chase(float delta_timer) {
+
+}
+
+//攻撃状態
+void EnemyBasic::attack(float delta_timer) {
+
+}
+
+//ダウン状態
+void EnemyBasic::down(float delta_timer) {
+
+}
+
+//捕まれ状態
+void EnemyBasic::hold(float delta_timer) {
+
+}
+
+//投げられ状態
+void EnemyBasic::thrown(float delta_timer) {
+
+}
+
+//ダメージ状態
+void EnemyBasic::damage(float delta_timer) {
+
+}
+
+//死状態
+void EnemyBasic::enemy_die(float delta_timer) {
 
 }
 
@@ -125,4 +190,17 @@ void EnemyBasic::collide_actor(Actor& other) {
 	transform_.translate(v, GStransform::Space::World);
 	// フィールドとの衝突判定
 	collide_field();
+}
+
+// 描画
+void EnemyBasic::draw() const {
+	// メッシュの描画
+	mesh_.draw();
+	// 当たり判定をテスト描画
+	collider().draw();
+}
+
+// 衝突リアクション
+void EnemyBasic::react(Actor& other) {
+
 }
