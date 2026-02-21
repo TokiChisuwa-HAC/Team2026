@@ -60,7 +60,7 @@ void GamePlayScene::start() {
         &world_, GSvector3{ 0.0f, 6.2f, -4.8f }, GSvector3{ 0.0f, 1.92, 0.0f } });
     // ライトクラスの追加
     world_.add_light(new Light{ &world_ });
-    
+
     // プレイヤーの追加
     world_.add_actor(new Player{ &world_, GSvector3{ -30.0f, 0.125f, 0.0f } });
     // 基礎エネミーの追加
