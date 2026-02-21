@@ -38,6 +38,8 @@ enum {
 
 // 移動速度
 const float WalkSpeed{ 0.025f };
+//ジャンプ中速度
+const float JumpingSpeed{ 0.008f };
 // 自分の高さ
 const float PlayerHeight{ 0.7f };
 // 衝突判定用の半径
@@ -76,42 +78,151 @@ void Player::update(float delta_time) {
 	// メッシュのモーションを更新
 	mesh_.update(delta_time);
 	// ワールド変換行列を設定
-	mesh_.transform(transform_.localToWorldMatrix());
+    mesh_.transform(transform_.localToWorldMatrix());
+    //キー、ボタン入力処理
+    Input_KeyStick(delta_time);
 }
+//状態の更新
+void Player::update_state(float delta_time) {
+    switch (state_)
+    {
+    case State::Idle:  idle(delta_time); break;
+    case State::Move:  move(delta_time); break;
+    case State::Attack: attack(delta_time); break;
+    case State::Damage: damage(delta_time); break;
+    case State::Death: death(delta_time); break;
+    case State::Rise: rise(delta_time); break;
+    case State::Jump: jump(delta_time); break;
+    case State::Jumping: jumping(delta_time); break;
+    case State::Landing:land(delta_time); break;
+    case State::Hold:hold(delta_time); break;
+    case State::Holding:holding(delta_time); break;
+    case State::Throw_E:throw_enemy(delta_time); break;
+    case State::Start_Rotate_E:start_throw_enemy(delta_time); break;
+    case State::Rotating_E:rotating_enemy(delta_time); break;
+    case State::Rotate_Throw_E:rotate_throw_enemy(delta_time); break;
 
-// 描画
-void Player::draw() const {
-	// メッシュを描画
-	mesh_.draw();
-	// 当たり判定をテスト描画
-	collider().draw();
+    }
+    state_timer_ += delta_time;
 }
-
-// 衝突リアクション
-void Player::react(Actor& other) {
-
+//状態の変更
+void Player::change_state(State state, GSuint motion, bool loop)
+{
+    motion_ = motion;
+    motion_loop_ = loop;
+    state_ = state;
+    state_timer_ = 0.0f;
 }
-
-// 移動処理
-void Player::move(float delta_time) {
+//キー、ボタン入力処理
+void Player::Input_KeyStick(float delta_time) {
     // カメラの前方向ベクトルを取得
     GSvector3 forward = world_->camera()->transform().forward();
     forward.y = 0.0f;
     // カメラの右方向ベクトルを取得
     GSvector3 right = world_->camera()->transform().right();
-    // キーの入力値から移動ベクトルを計算
-    GSvector3 velocity{ 0.0f, 0.0f, 0.0f };
-    if (gsGetKeyState(GKEY_W)) velocity += forward;
-    if (gsGetKeyState(GKEY_S)) velocity -= forward;
-    if (gsGetKeyState(GKEY_A)) velocity -= right;
-    if (gsGetKeyState(GKEY_D)) velocity += right;
-    velocity = velocity.normalized() * WalkSpeed * delta_time;
 
-    // 移動量のxz成分だけ更新
-    velocity_.x = velocity.x;
-    velocity_.z = velocity.z;
+    GSvector2 leftStick;
+    gsXBoxPadGetLeftAxis(0, &leftStick);
+    switch (state_) {
+        //Idle,Move時
+    case State::Idle:
+    case State::Move:
+        cal_v_ = { 0.0,0.0,0.0 };
+        if (leftStick.y > 0.5f || gsGetKeyState(GKEY_W)) {
+            cal_v_ += forward;
+        }
+        if (leftStick.y < -0.5f || gsGetKeyState(GKEY_S)) {
+            cal_v_ -= forward;
+        }
+        if (leftStick.x > 0.5f || gsGetKeyState(GKEY_D)) {
+            cal_v_ += right;
+        }
+        if (leftStick.x < -0.5f || gsGetKeyState(GKEY_A)) {
+            cal_v_ -= right;
+        }
+
+        cal_v_ = cal_v_.normalized() * WalkSpeed * delta_time;
+
+        // 移動量のxz成分だけ更新
+        velocity_.x = cal_v_.x;
+        velocity_.z = cal_v_.z;
+
+        break;
+    case State::Jumping:
+        cal_v_ *= 0.8;
+        if (leftStick.y > 0.5f || gsGetKeyState(GKEY_W)) {
+            cal_v_ += forward;
+        }
+        if (leftStick.y < -0.5f || gsGetKeyState(GKEY_S)) {
+            cal_v_ -= forward;
+        }
+        if (leftStick.x > 0.5f || gsGetKeyState(GKEY_D)) {
+            cal_v_ += right;
+        }
+        if (leftStick.x < -0.5f || gsGetKeyState(GKEY_A)) {
+            cal_v_ -= right;
+        }
+
+        cal_v_ = cal_v_.normalized() * JumpingSpeed * delta_time;
+
+        // 移動量のxz成分だけ更新
+        velocity_.x = cal_v_.x;
+        velocity_.z = cal_v_.z;
+
+        break;
+
+    case State::Rotating_E:
+        break;
+
+    }
+}
+
+//アイドル状態
+void Player::idle(float delta_time) {
+}
+// 移動処理
+void Player::move(float delta_time) {
     // 平行移動する（ワールド基準）
     transform_.translate(velocity_, GStransform::Space::World);
+}
+//攻撃
+void Player::attack(float delta_time) {
+}
+//ダメージ
+void Player::damage(float delta_time) {
+}
+// 死亡
+void Player::death(float delta_time) {
+}
+// 起き上がり
+void Player::rise(float delta_time) {
+}
+// ジャンプ
+void Player::jump(float delta_time) {
+}
+// ジャンプ中
+void Player::jumping(float delta_time) {
+}
+// 着地
+void Player::land(float delta_time) {
+}
+// つかみ
+void Player::hold(float delta_time) {
+}
+// つかみ中
+void Player::holding(float delta_time) {
+}
+// 投げ
+void Player::throw_enemy(float delta_time) {
+}
+// 振り回しはじめ
+void Player::start_throw_enemy(float delta_time) {
+}
+// 振り回し中
+void Player::rotating_enemy(float delta_time) {
+}
+// 回し投げ
+void Player::rotate_throw_enemy(float delta_time) {
 }
 
 // フィールドとの衝突判定
@@ -167,4 +278,17 @@ void Player::collide_actor(Actor& other) {
     transform_.translate(v, GStransform::Space::World);
     // フィールドとの衝突判定
     collide_field();
+}
+
+// 描画
+void Player::draw() const {
+    // メッシュを描画
+    mesh_.draw();
+    // 当たり判定をテスト描画
+    collider().draw();
+}
+
+// 衝突リアクション
+void Player::react(Actor& other) {
+
 }
