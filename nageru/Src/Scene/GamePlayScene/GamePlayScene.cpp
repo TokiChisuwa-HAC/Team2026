@@ -9,6 +9,8 @@
 #include "Assets.h"
 
 #include "Actor/Player/Player.h"
+#include "Actor/Enemy/EnemyBasic/EnemyBasic.h"
+#include "Actor/Enemy/EnemySpike/EnemySpike.h"
 
 // 開始
 void GamePlayScene::start() {
@@ -44,6 +46,13 @@ void GamePlayScene::start() {
     // 衝突判定用オクツリーの読み込み
     gsLoadOctree(Octree_Collider, "Assets/Octree/stage_collider.oct");
 
+    // プレイヤーメッシュの読み込み
+    gsLoadSkinMesh(Mesh_Player, "Assets/Player/player.mshb");
+    // 基礎エネミーメッシュの読み込み
+    gsLoadSkinMesh(Mesh_EnemyBasic, "Assets/Enemy/EnemyBasic/enemy_basic.mshb");
+    // とげエネミーメッシュの読み込み
+    gsLoadSkinMesh(Mesh_EnemySpike, "Assets/Enemy/EnemySpike/enemy_spike.mshb");
+
     // フィールドクラスの追加
     world_.add_field(new Field{ Octree_Stage, Octree_Collider, Mesh_Skybox });
     // カメラクラスの追加
@@ -54,6 +63,10 @@ void GamePlayScene::start() {
     
     // プレイヤーの追加
     world_.add_actor(new Player{ &world_, GSvector3{ -30.0f, 0.125f, 0.0f } });
+    // 基礎エネミーの追加
+    world_.add_actor(new EnemyBasic{ &world_, GSvector3{ -30.0f, 0.125f, 10.0f } });
+    // とげエネミーの追加
+    world_.add_actor(new EnemySpike{ &world_, GSvector3{ -20.0f, 0.125f, 10.0f } });
 }
 
 // 更新

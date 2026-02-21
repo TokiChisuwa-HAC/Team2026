@@ -7,7 +7,14 @@
 
 // モーション番号
 enum {
-	MotionIdle = 1,
+	MotionIdle = 3,			// アイドル状態
+	MotionDizzy = 2,		// 気絶
+	MotionWalk = 10,		// 通常移動
+	MotionAttack = 0,		// 攻撃
+	MotionTurnLeft = 16,	// 左に振り向く
+	MotionTurnRight = 17,	// 右に振り向く
+	MotionJump = 1,			// ジャンプ
+	MotionTakeDamage = 15,	// ダメージを受ける
 };
 
 // 自分の高さ
@@ -55,7 +62,7 @@ void EnemyBasic::update(float delta_time) {
 // 描画
 void EnemyBasic::draw() const {
 	// メッシュの描画
-	//mesh_.draw();
+	mesh_.draw();
 	// 当たり判定をテスト描画
 	collider().draw();
 }
