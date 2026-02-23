@@ -1,5 +1,6 @@
 #include <GSgame.h>
 #include "Scene/SceneManager.h"
+#include "Scene/TitleScene/TitleScene.h"
 #include "Scene/GamePlayScene/GamePlayScene.h"
 #include <GSeffect.h>
 
@@ -14,10 +15,12 @@ public:
 	void start() override {
 		// エフェクトの初期化
 		gsInitEffect();
+		// タイトルシーンの追加
+		scene_manager_.add("TitleScene", new TitleScene());
 		// ゲームプレイシーンの追加
 		scene_manager_.add("GamePlayScene", new GamePlayScene());
 		// ゲームプレイシーンから開始
-		scene_manager_.change("GamePlayScene");
+		scene_manager_.change("TitleScene");
 	}
 
 	// 更新

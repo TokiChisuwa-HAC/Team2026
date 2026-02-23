@@ -9,7 +9,12 @@ void TitleScene::start() {
 
 // 更新
 void TitleScene::update(float delta_time) {
-
+    // スペースキーが押されたら
+    if (gsGetKeyTrigger(GKEY_SPACE)) {
+        // ゲームプレイシーンに遷移
+        next_scene_name_ = "GamePlayScene";
+        is_end_ = true;
+    }
 }
 
 // 描画
