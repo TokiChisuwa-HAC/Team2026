@@ -158,6 +158,7 @@
     <ClCompile Include="Src\Render\Light\Light.cpp" />
     <ClCompile Include="Src\Scene\GamePlayScene\GamePlayScene.cpp" />
     <ClCompile Include="Src\Scene\SceneManager.cpp" />
+    <ClCompile Include="Src\Scene\TitleScene\TitleScene.cpp" />
     <ClCompile Include="Src\Tween\Tween.cpp" />
     <ClCompile Include="Src\Tween\TweenUnit.cpp" />
     <ClCompile Include="Src\Tween\ValueUnit.cpp" />
@@ -190,6 +191,7 @@
     <ClInclude Include="Src\Scene\IScene.h" />
     <ClInclude Include="Src\Scene\SceneManager.h" />
     <ClInclude Include="Src\Scene\SceneNull.h" />
+    <ClInclude Include="Src\Scene\TitleScene\TitleScene.h" />
     <ClInclude Include="Src\Tween\Tween.h" />
     <ClInclude Include="Src\Tween\TweenUnit.h" />
     <ClInclude Include="Src\Tween\ValueUnit.h" />
