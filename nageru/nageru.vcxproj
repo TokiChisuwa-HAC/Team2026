@@ -157,7 +157,12 @@
     <ClCompile Include="Src\Render\Camera\FreeCamera\FreeCamera.cpp" />
     <ClCompile Include="Src\Render\Light\Light.cpp" />
     <ClCompile Include="Src\Scene\GamePlayScene\GamePlayScene.cpp" />
+    <ClCompile Include="Src\Scene\GamePlayScene\HitoshiScene\HitoshiScene.cpp" />
+    <ClCompile Include="Src\Scene\GamePlayScene\TokiScene\TokiScene.cpp" />
+    <ClCompile Include="Src\Scene\GamePlayScene\WataruScene\WataruScene.cpp" />
+    <ClCompile Include="Src\Scene\GamePlayScene\YoshinobuScene\YoshinobuScene.cpp" />
     <ClCompile Include="Src\Scene\SceneManager.cpp" />
+    <ClCompile Include="Src\Scene\TitleScene\TitleScene.cpp" />
     <ClCompile Include="Src\Tween\Tween.cpp" />
     <ClCompile Include="Src\Tween\TweenUnit.cpp" />
     <ClCompile Include="Src\Tween\ValueUnit.cpp" />
@@ -187,9 +192,14 @@
     <ClInclude Include="Src\Render\Camera\FreeCamera\FreeCamera.h" />
     <ClInclude Include="Src\Render\Light\Light.h" />
     <ClInclude Include="Src\Scene\GamePlayScene\GamePlayScene.h" />
+    <ClInclude Include="Src\Scene\GamePlayScene\HitoshiScene\HitoshiScene.h" />
+    <ClInclude Include="Src\Scene\GamePlayScene\TokiScene\TokiScene.h" />
+    <ClInclude Include="Src\Scene\GamePlayScene\WataruScene\WataruScene.h" />
+    <ClInclude Include="Src\Scene\GamePlayScene\YoshinobuScene\YoshinobuScene.h" />
     <ClInclude Include="Src\Scene\IScene.h" />
     <ClInclude Include="Src\Scene\SceneManager.h" />
     <ClInclude Include="Src\Scene\SceneNull.h" />
+    <ClInclude Include="Src\Scene\TitleScene\TitleScene.h" />
     <ClInclude Include="Src\Tween\Tween.h" />
     <ClInclude Include="Src\Tween\TweenUnit.h" />
     <ClInclude Include="Src\Tween\ValueUnit.h" />
