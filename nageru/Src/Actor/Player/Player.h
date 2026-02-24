@@ -74,6 +74,9 @@ private:
 	void rotate_throw_enemy(float delta_time);
 	//キー、ボタン入力処理
 	void Input_KeyStick(float delta_time);
+	// 攻撃,つかみ判定を生成する
+	void generate_attack_hold_collider();
+
 private:
 	// アニメーションメッシュ
 	AnimatedMesh mesh_;
@@ -87,6 +90,8 @@ private:
 	float           state_timer_;
 	//計算用velocity
 	GSvector3 cal_v_;
+	//つかみフラグ
+	bool hold_frag_;
 };
 
 #endif
