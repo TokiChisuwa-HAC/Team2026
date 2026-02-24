@@ -2,6 +2,10 @@
 #include "Scene/SceneManager.h"
 #include "Scene/TitleScene/TitleScene.h"
 #include "Scene/GamePlayScene/GamePlayScene.h"
+#include "Scene/GamePlayScene/HitoshiScene/HitoshiScene.h"
+#include "Scene/GamePlayScene/TokiScene/TokiScene.h"
+#include "Scene/GamePlayScene/WataruScene/WataruScene.h"
+#include "Scene/GamePlayScene/YoshinobuScene/YoshinobuScene.h"
 #include <GSeffect.h>
 
 // ゲームクラス
@@ -19,7 +23,11 @@ public:
 		scene_manager_.add("TitleScene", new TitleScene());
 		// ゲームプレイシーンの追加
 		scene_manager_.add("GamePlayScene", new GamePlayScene());
-		// ゲームプレイシーンから開始
+		scene_manager_.add("HitoshiScene", new HitoshiScene());
+		scene_manager_.add("TokiScene", new TokiScene());
+		scene_manager_.add("WataruScene", new WataruScene());
+		scene_manager_.add("YoshinobuScene", new YoshinobuScene());
+		// タイトルシーンから開始
 		scene_manager_.change("TitleScene");
 	}
 
