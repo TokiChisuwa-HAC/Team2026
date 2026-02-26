@@ -4,6 +4,7 @@
 #include "Math/Line.h"
 #include "Assets.h"
 #include <GSeffect.h>
+#include <cstdlib>
 
 // モーション番号
 enum {
@@ -23,11 +24,16 @@ const float EnemyHeight{ 1.0f };
 const float EnemyRadius{ 0.6f };
 // 足元のオフセット
 const float FootOffset{ 0.1f };
+//追跡開始範囲の半径
+const float ChaseStartRadius{ 5.0f };
+//パトロール時の移動範囲の半径
+const float PatrolMoveRadius{ 3.0f };
 
 EnemyBasic::EnemyBasic(IWorld* world, const GSvector3& position) :
 	mesh_{ Mesh_EnemyBasic, MotionIdle, true },
 	motion_{ MotionIdle },
-	motion_loop_{ true } {
+	motion_loop_{ true },
+	player_{nullptr} {
 	world_ = world;
 	tag_ = "EnemyTag";
 	name_ = "EnemyBasic";
@@ -35,15 +41,20 @@ EnemyBasic::EnemyBasic(IWorld* world, const GSvector3& position) :
 	collider_ = BoundingSphere{ EnemyRadius, GSvector3{ 0.0f, EnemyHeight, 0.0f } };
 	// 座標の初期化
 	transform_.position(position);
+	//初期の座標を保存
+	enemy_hold_position_ = position;
 	// メッシュの変換行列を初期化
 	mesh_.transform(transform_.localToWorldMatrix());
 
 	//タイマー初期化
 	state_timer_ = 0.0f;
+	patrol_timer_ = 0.0f;
 }
 
 // 更新
 void EnemyBasic::update(float delta_time) {
+	//プレイヤーを検索する
+	player_ = world_->find_actor("Player");
 	//状態の更新
 	update_state(delta_time);
 	// 重力で下向きに加速
@@ -94,17 +105,32 @@ void EnemyBasic::change_state(State state, GSuint motion, bool loop) {
 
 //アイドル状態
 void EnemyBasic::idle(float delta_timer) {
-
+	change_state(State::Patrol, MotionIdle);
 }
 
 //パトロール状態
 void EnemyBasic::patrol(float delta_timer) {
+	//プレイヤーが追跡開始範囲内に入ってるか否か
+	if (is_chase()) {
+		//ジャンプモーションが終わったら追跡状態に遷移
+		if (motion_ == MotionJump && state_timer_ >= mesh_.motion_end_time()) {
+			change_state(State::Chase, MotionWalk);
+		}
+		else {
+			change_state(State::Patrol, MotionJump);
+		}
 
+	}
 }
 
 //追跡状態
 void EnemyBasic::chase(float delta_timer) {
-
+	//追跡範囲内からでるまで追いかける
+	if (!is_chase()) {
+		change_state(State::Patrol,MotionIdle);
+		//追跡状態の最後の座標を保持する
+		enemy_hold_position_ = transform_.position();
+	}
 }
 
 //攻撃状態
@@ -136,6 +162,53 @@ void EnemyBasic::damage(float delta_timer) {
 void EnemyBasic::enemy_die(float delta_timer) {
 
 }
+
+//移動速度管理関数
+void EnemyBasic::speed_controller(float delta_time){
+	// プレイヤー自身の向きベースの移動方向を決定
+	GSvector3 enemy_forward_ = transform_.forward();
+	enemy_forward_.y = 0.0f;
+	if (enemy_forward_.length() != 0.0f) {
+		enemy_forward_ = enemy_forward_.normalized();
+	}
+
+	GSvector3 enemy_right_ = transform_.right();
+	enemy_right_.y = 0.0f;
+	if (enemy_right_.length() != 0.0f) {
+		enemy_right_ = enemy_right_.normalized();
+	}
+
+	//各状態に合わせて移動する方向と数値を確定する
+	switch (state_)
+	{
+	case EnemyBasic::State::Idle:
+		break;
+	case EnemyBasic::State::Patrol:
+		//一定時間経つと移動する
+		//ランダムな移動方向を決める
+
+		break;
+	case EnemyBasic::State::Chase:
+
+		break;
+	case EnemyBasic::State::Attack:
+		break;
+	case EnemyBasic::State::Down:
+		break;
+	case EnemyBasic::State::Hold:
+		break;
+	case EnemyBasic::State::Thrown:
+		break;
+	case EnemyBasic::State::Damage:
+		break;
+	case EnemyBasic::State::Die:
+		break;
+	default:
+		break;
+	}
+}
+
+
 
 // フィールドとの衝突判定
 void EnemyBasic::collide_field() {
@@ -203,4 +276,39 @@ void EnemyBasic::draw() const {
 // 衝突リアクション
 void EnemyBasic::react(Actor& other) {
 
+}
+
+//前向き方向のベクトルとターゲット方向のベクトルの角度さを求める(符号付)
+float EnemyBasic::target_signed_angle() const{
+	//ターゲットがいなければ0を返す
+	if (player_ == nullptr)return 0.0f;
+	//ターゲット方向のベクトルを求める
+	GSvector3 to_target = player_->transform().position() - transform_.position();
+	//前向き方向のベクトルを取得
+	GSvector3 forward = transform_.forward();
+	//ベクトルのy成分を無効にする
+	forward.y = 0.0f;
+	to_target.y = 0.0f;
+	//前向き方向のベクトルとターゲット方向のベクトルの角度さを求める
+	return GSvector3::signedAngle(forward, to_target);
+
+}
+
+//前向き方向のベクトルとターゲット方向のベクトルの角度さを求める(符号なし)
+float EnemyBasic::target_angle()const {
+	return std::abs(target_signed_angle());
+}
+
+//ターゲットとの距離を求める
+float EnemyBasic::target_distance()const {
+	//ターゲットがいなければ最大距離を返す
+	if (player_ == nullptr)return FLT_MAX;//float型の最大値
+	//ターゲットとの距離を計算する
+	return GSvector3::distance(player_->transform().position(), transform_.position());
+}
+
+//追跡判定関数
+bool EnemyBasic::is_chase()const {
+	//追跡開始範囲内かつ向いてる方向の100度以内にプレイヤーがいるか?
+	return (target_distance() <= ChaseStartRadius) && (target_angle() <= 100.0f);
 }

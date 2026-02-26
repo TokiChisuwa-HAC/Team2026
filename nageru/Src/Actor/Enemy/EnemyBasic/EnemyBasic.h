@@ -36,6 +36,7 @@ private:
 	void update_state(float delta_time);
 	//状態の変更
 	void change_state(State state, GSuint motion, bool loop = true);
+	//--------------ステート関数--------------
 	//アイドル状態
 	void idle(float delta_time);
 	//パトロール状態
@@ -54,11 +55,27 @@ private:
 	void damage(float delta_time);
 	//死
 	void enemy_die(float delta_time);
+	//--------------ステート関数(終)--------------
+
+	//--------------移動系関数----------------
+	//移動速度管理関数
+	void speed_controller(float delta_time);
+
 
 	// フィールドとの衝突処理
 	void collide_field();
 	// アクターとの衝突処理
 	void collide_actor(Actor& other);
+
+	//--------判定・計算関数--------
+	//前向き方向のベクトルとターゲット方向のベクトルの角度差を求める(符号付)
+	float target_signed_angle()const;
+	//前向き方向のベクトルとターゲット方向のベクトルの角度差を求める(符号なし)
+	float target_angle()const;
+	//ターゲットとの距離を求める
+	float target_distance()const;
+	//追跡判定関数
+	bool is_chase()const;
 
 private:
 	// アニメーションメッシュ
@@ -71,9 +88,16 @@ private:
 	GSuint effect_handle_;
 	//状態の変数
 	State state_;
+	//プレイヤー
+	Actor* player_;
 
 	//タイマー変数定義
 	float state_timer_;
+	float patrol_timer_;
+
+	//変数定義
+	//座標保存変数
+	GSvector3 enemy_hold_position_;
 };
 
 #endif
